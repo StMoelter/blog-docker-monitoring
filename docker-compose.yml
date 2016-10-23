@@ -1,0 +1,10 @@
+version: '2'
+services:
+  influxdb:
+    container_name: influx
+    restart: unless-stopped
+    image: influxdb
+    hostname: influxdb
+    ports:
+      - 127.0.0.1:8086:8086
+      - 127.0.0.1:8083:8083
