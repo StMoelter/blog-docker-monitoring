@@ -10,8 +10,11 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+    command: -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influxdb:8086
     ports:
       - 127.0.0.1:8080:8080
+    networks:
+      - app_net
 
   influxdb:
     container_name: influx
@@ -21,3 +24,15 @@ services:
     ports:
       - 127.0.0.1:8086:8086
       - 127.0.0.1:8083:8083
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 172.16.238.0/24
+#          gateway: 172.16.238.1
+
