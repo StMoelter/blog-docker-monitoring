@@ -1,5 +1,7 @@
 version: '2'
+
 services:
+
   cadvisor:
     container_name: cadvisor
     restart: unless-stopped
@@ -10,3 +12,12 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
     ports:
       - 127.0.0.1:8080:8080
+
+  influxdb:
+    container_name: influx
+    restart: unless-stopped
+    image: influxdb
+    hostname: influxdb
+    ports:
+      - 127.0.0.1:8086:8086
+      - 127.0.0.1:8083:8083
