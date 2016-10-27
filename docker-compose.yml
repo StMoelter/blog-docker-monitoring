@@ -10,7 +10,7 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-    command: -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influxdb:8086
+    command: -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influx:8086
     ports:
       - 127.0.0.1:8080:8080
     networks:
@@ -20,7 +20,6 @@ services:
     container_name: influx
     restart: unless-stopped
     image: influxdb
-    hostname: influxdb
     ports:
       - 127.0.0.1:8086:8086
       - 127.0.0.1:8083:8083
