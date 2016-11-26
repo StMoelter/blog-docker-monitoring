@@ -13,6 +13,8 @@ services:
     command: -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influx:8086
     ports:
       - 127.0.0.1:8080:8080
+    depends_on:
+      - influxdb
     networks:
       - app_net
 
@@ -35,6 +37,8 @@ services:
     environment:
       - GF_SERVER_ROOT_URL=http://localhost:3000
       - GF_SECURITY_ADMIN_PASSWORD=password
+    depends_on:
+      - influxdb
     networks:
       - app_net
 
